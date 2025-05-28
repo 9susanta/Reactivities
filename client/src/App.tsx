@@ -1,20 +1,32 @@
 import { Fragment, useEffect, useState } from 'react'
+import { List, ListItem, ListItemText, Typography } from "@mui/material";
 import './App.css'
 
 function App() {
-  const [activities, setActivity]=useState([]);
+  const [activities, setActivity]=useState<Activity[]>([]);
 
   useEffect(()=>{
      fetch("https://localhost:5001/api/Activities")
      .then(response=> response.json())
      .then(data=>setActivity(data));
+
+     return ()=>{ console.log("In useEffect clean up")} //clean the useEffect
+
   },[])
   return (
-    <Fragment>
-      <h3 className='app' style={{color:'red'}}>Reactivites</h3>
-      <ul> {activities.map(activity=>(<li key="{activity.id}">{activity.title}</li>))}
-      </ul>
-    </Fragment>
+    <>
+       <Typography variant='h3'>Reactivities</Typography>
+       <List>
+          {
+            activities.map(activity=>
+            (
+              <ListItem key="{activity.id}">
+                  <ListItemText>{activity.title}</ListItemText>
+              </ListItem>
+            ))
+          }
+       </List>
+    </>
   )
 }
 

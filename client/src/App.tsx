@@ -1,14 +1,14 @@
-import { Fragment, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { List, ListItem, ListItemText, Typography } from "@mui/material";
 import './App.css'
+import axios from 'axios';
 
 function App() {
   const [activities, setActivity]=useState<Activity[]>([]);
 
   useEffect(()=>{
-     fetch("https://localhost:5001/api/Activities")
-     .then(response=> response.json())
-     .then(data=>setActivity(data));
+     axios.get<Activity>("https://localhost:5001/api/Activities")
+     .then(response=>setActivity(response.data));
 
      return ()=>{ console.log("In useEffect clean up")} //clean the useEffect
 

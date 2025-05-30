@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { CssBaseline, List, ListItem, ListItemText } from "@mui/material";
+import { Container, CssBaseline, List, ListItem, ListItemText } from "@mui/material";
 import axios from 'axios';
 import NavBar from './NavBar';
 
@@ -17,7 +17,8 @@ function App() {
     <>
       <CssBaseline/>
        <NavBar/>
-       <List>
+       <Container maxWidth="xl" sx={{mt:3}}>
+          <List>
           {
             activities.map(activity=>
             (
@@ -27,6 +28,7 @@ function App() {
             ))
           }
        </List>
+       </Container>
     </>
   )
 }

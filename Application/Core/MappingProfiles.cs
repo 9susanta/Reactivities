@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Application.Activities.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,8 @@ namespace Application.Core
     {
         public MappingProfiles()
         {
-            CreateMap<Activity, Activity>();
+            CreateMap<CreateActivityDto, Activity>();
+            CreateMap<EditActivityDto, Activity>();
         }
     }
 }

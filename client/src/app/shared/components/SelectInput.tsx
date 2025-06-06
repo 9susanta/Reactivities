@@ -1,6 +1,6 @@
 import { FormControl, FormHelperText, InputLabel, MenuItem, Select } from "@mui/material";
-import { SelectInputProps } from "@mui/material/Select/SelectInput";
-import { FieldValues, useController, UseControllerProps } from "react-hook-form"
+import { type SelectInputProps } from "@mui/material/Select/SelectInput";
+import { type FieldValues, useController, type UseControllerProps } from "react-hook-form"
 
 type Props<T extends FieldValues> = {
     items: {text: string, value: string}[];

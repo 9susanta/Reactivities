@@ -4,13 +4,14 @@ import { useActivites } from "../../../lib/hooks/useActivities";
 import { useNavigate, useParams } from "react-router";
 
 import { useForm } from "react-hook-form";
-import { ActivitySchema, activitySchema } from "../../../lib/schemas/activitySchema";
+import { type ActivitySchema, activitySchema } from "../../../lib/schemas/activitySchema";
 import { zodResolver } from '@hookform/resolvers/zod';
 import TextInput from "../../../app/shared/components/TextInput";
 import { categoryOptions } from "./categoryOptions";
 import DateTimeInput from "../../../app/shared/components/DateTimeInput";
 import LocationInput from "../../../app/shared/components/LocationInput";
 import SelectInput from "../../../app/shared/components/SelectInput";
+import type { Activity } from "../../../lib/types";
 
 export default function ActivityForm() {
     const { control, reset, handleSubmit } = useForm<ActivitySchema>({
@@ -44,7 +45,7 @@ export default function ActivityForm() {
                     onSuccess: () => navigate(`/activities/${activity.id}`)
                 })
             } else {
-                createActivity.mutate(flattenedData, {
+                createActivity.mutate(flattenedData as Activity, {
                     onSuccess: (id) => navigate(`/activities/${id}`)
                 })
             }

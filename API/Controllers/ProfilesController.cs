@@ -1,4 +1,5 @@
-﻿using Application.Profiles;
+﻿using Application.Activities.Queries;
+using Application.Profiles;
 using Application.Profiles.Commands;
 using Application.Profiles.DTOs;
 using Application.Profiles.Queries;

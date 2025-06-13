@@ -1,4 +1,5 @@
-﻿using Application.Core;
+﻿using Application.Activities.DTOs;
+using Application.Core;
 using Application.Interfaces;
 using System;
 using System.Collections.Generic;

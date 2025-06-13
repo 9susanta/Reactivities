@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.SignalR;
+﻿using Application.Activities.Commands;
+using Application.Activities.Queries;
+using Microsoft.AspNetCore.SignalR;
 
 namespace API.SignalR
 {

@@ -8,17 +8,15 @@ import { toast } from "react-toastify";
 export const useAccount=()=>{
     const queryClient = useQueryClient();
     const navigate = useNavigate();
-    const location = useLocation();
     
     const loginUser = useMutation({
         mutationFn: async (creds: LoginSchema) => {
             await agent.post('/login?useCookies=true', creds);
         },
         onSuccess: async () => {
-            await queryClient.removeQueries({
+            await queryClient.invalidateQueries({
                 queryKey: ['user']
             });
-
         }
     });
 
@@ -46,12 +44,9 @@ export const useAccount=()=>{
     const {data: currentUser, isLoading: loadingUserInfo} = useQuery({
         queryKey: ['user'],
         queryFn: async () => {
+            console.log(location.pathname,!queryClient.getQueryData(['user']))
             const response = await agent.get<User>('/account/user-info');
-            
-            if(response.status==204 || response.status==401)
-               throw new Error("Unauthorised User");
-           
-            return response.data as User;
+            return response.data;
         },
         enabled: !queryClient.getQueryData(['user'])
             && location.pathname !== '/login'
@@ -65,5 +60,4 @@ export const useAccount=()=>{
         loadingUserInfo,
         registerUser
     }
-
 }
